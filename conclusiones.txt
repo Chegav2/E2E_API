@@ -1,0 +1,44 @@
+CONCLUSIONES Y HALLAZGOS
+
+1) Cobertura implementada
+
+- La prueba E2E valida agregar dos productos, visualizar el carrito, completar el formulario y finalizar la compra.
+- La suite API valida crear un usuario, intentar crear un usuario existente, login correcto y login con contrasena incorrecta.
+- Los casos API se ejecutan con Karate y los casos UI con Serenity BDD, Cucumber y Screenplay.
+
+2) Datos y parametrizacion
+
+- La prueba E2E utiliza un Scenario Outline y consume el caso de compra desde data/e2e/purchase_cases.csv.
+- Las pruebas API utilizan Scenario Outline con datos desde archivos CSV y JSON ubicados en data/api.
+- Los usuarios API se generan con un UUID para evitar colisiones entre ejecuciones.
+
+3) Hallazgos funcionales
+
+- Demoblaze muestra una alerta JavaScript despues de agregar un producto al carrito; se controla desde la interaccion correspondiente.
+- El catalogo y los detalles de producto pueden tardar en renderizar; se utilizan esperas explicitas.
+- Las respuestas negativas de la API llegan con HTTP 200 y un objeto errorMessage, por lo que se validan tanto el estado como el cuerpo.
+
+4) Estabilidad
+
+- Se utilizan esperas explicitas en los puntos criticos del flujo UI.
+- Las responsabilidades estan separadas en Tasks, Questions, Interactions y User Interfaces.
+- Los runners permiten filtrar la ejecucion mediante tags.
+- La API tiene timeouts de conexion y lectura para evitar esperas indefinidas.
+
+5) Reportes
+
+- Serenity genera el informe HTML y las capturas de la prueba UI.
+- Cucumber genera el archivo target/cucumber-reports/cucumber.json.
+- Karate genera target/karate-reports/karate-summary.html.
+- Surefire genera los resultados JUnit en target/surefire-reports.
+
+6) Consideraciones
+
+- Las pruebas dependen de la disponibilidad de Demoblaze y de su API.
+- La prueba UI requiere Google Chrome.
+- Los precios, productos y respuestas pertenecen al entorno publico de demostracion y pueden cambiar.
+- Para una ejecucion local sin Java o Maven configurados globalmente se debe utilizar run-tests.ps1.
+
+7) Conclusion
+
+La solucion cumple el flujo E2E de compra y los cuatro casos solicitados para los servicios Signup y Login. La estructura mantiene separadas las responsabilidades de automatizacion, utiliza datos externos, tags, reportes y archivos de soporte para facilitar el mantenimiento y la ejecucion.

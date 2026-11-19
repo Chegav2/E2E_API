@@ -1,0 +1,2 @@
+caseName,password,expectedMessage
+Duplicate user,Test12345!,This user already exist.

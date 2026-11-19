@@ -1,0 +1,3 @@
+caseName,password,expectedType,expectedMessage
+Valid credentials,Test12345!,token,Auth_token:
+Invalid password,Wrong12345!,error,Wrong password.
